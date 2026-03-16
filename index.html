@@ -14,7 +14,7 @@
   --bg:#0A0A0A;--surface:#141414;--surface2:#1a1a1a;--border:#222;
   --text:#FAFAFA;--text2:#999;--text3:#666;
   --green:#00FF88;--green-dim:rgba(0,255,136,.15);--green-glow:rgba(0,255,136,.4);
-  --blue:#3B82F6;
+  --blue:#3B82F6;--orange:#FF6B35;
   --radius:12px;--radius-lg:20px;
 }
 html{scroll-behavior:smooth;font-size:16px}
@@ -24,58 +24,97 @@ a{color:var(--green);text-decoration:none}
 a:hover{opacity:.8}
 
 /* Header */
-header{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(10,10,10,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-header .container{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+header{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(10,10,10,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+header .container{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:var(--text);display:flex;align-items:center;gap:8px}
-.logo .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green-glow)}
-.back-link{color:var(--text2);font-size:.875rem}
+.logo .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green-glow);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.back-link{color:var(--text2);font-size:.875rem;transition:color .2s}
 .back-link:hover{color:var(--green)}
 
 /* Main */
-main{padding:100px 24px 60px;max-width:900px;margin:0 auto}
+main{padding:100px 24px 60px;max-width:1100px;margin:0 auto}
 
 /* Hero */
-.hero{text-align:center;margin-bottom:60px}
-.hero h1{font-size:clamp(2.5rem,6vw,4rem);margin-bottom:16px}
-.hero p{color:var(--text2);font-size:1.25rem;max-width:500px;margin:0 auto}
+.hero{text-align:center;margin-bottom:80px}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);margin-bottom:20px;background:linear-gradient(135deg,var(--text) 0%,var(--green) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--text2);font-size:1.35rem;max-width:600px;margin:0 auto 32px}
+.hero-pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;background:var(--surface);border:1px solid var(--border);border-radius:20px;font-size:.875rem;color:var(--text2)}
+.pill-icon{font-size:1rem}
 
 /* Booking Cards */
-.booking-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-bottom:60px}
-.booking-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;position:relative;transition:all .3s}
-.booking-card:hover{border-color:var(--green);transform:translateY(-4px)}
-.booking-card.featured{border-color:var(--green);background:linear-gradient(135deg,var(--surface) 0%,rgba(0,255,136,.05) 100%)}
-.badge{position:absolute;top:16px;right:16px;background:var(--green-dim);color:var(--green);font-family:'JetBrains Mono',monospace;font-size:.75rem;padding:4px 12px;border-radius:20px}
-.duration{font-family:'JetBrains Mono',monospace;font-size:.875rem;color:var(--text3);margin-bottom:8px}
-.booking-card h3{font-size:1.5rem;margin-bottom:8px}
-.description{color:var(--text2);margin-bottom:20px;min-height:50px}
-.price{font-size:2.5rem;font-weight:800;margin-bottom:24px}
-.price span{font-size:1rem;color:var(--text3);font-weight:400}
-.btn{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:14px 24px;border-radius:8px;font-weight:600;font-size:1rem;transition:all .25s;cursor:pointer;border:none}
+.booking-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;margin-bottom:80px}
+.booking-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px;position:relative;transition:all .35s cubic-bezier(0.4,0,0.2,1)}
+.booking-card:hover{border-color:var(--green);transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,255,136,.15)}
+.booking-card.featured{border-color:var(--green);background:linear-gradient(135deg,var(--surface) 0%,rgba(0,255,136,.08) 100%);box-shadow:0 8px 32px rgba(0,255,136,.12)}
+.badge{position:absolute;top:20px;right:20px;background:var(--green);color:#0A0A0A;font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;padding:6px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}
+.duration{font-family:'JetBrains Mono',monospace;font-size:.875rem;color:var(--text3);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.booking-card h3{font-size:1.75rem;margin-bottom:12px}
+.description{color:var(--text2);margin-bottom:24px;min-height:60px;line-height:1.7}
+.features{list-style:none;margin-bottom:28px;padding:0}
+.features li{color:var(--text2);font-size:.9rem;padding:8px 0;display:flex;align-items:flex-start;gap:10px}
+.features li::before{content:'✓';color:var(--green);font-weight:700;font-size:1.1rem}
+.price{font-size:3rem;font-weight:800;margin-bottom:28px;display:flex;align-items:baseline;gap:8px}
+.price span{font-size:1.1rem;color:var(--text3);font-weight:400}
+.btn{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:16px 28px;border-radius:10px;font-weight:600;font-size:1.05rem;transition:all .3s;cursor:pointer;border:none;gap:8px}
 .btn-primary{background:var(--green);color:#0A0A0A}
-.btn-primary:hover{opacity:1;box-shadow:0 0 24px rgba(0,255,136,.3);transform:translateY(-1px)}
-.btn-outline{border:1px solid var(--border);color:var(--text);background:transparent}
-.btn-outline:hover{border-color:var(--green);color:var(--green)}
+.btn-primary:hover{opacity:1;box-shadow:0 0 32px rgba(0,255,136,.4);transform:translateY(-2px)}
+.btn-outline{border:2px solid var(--border);color:var(--text);background:transparent}
+.btn-outline:hover{border-color:var(--green);color:var(--green);background:rgba(0,255,136,.05)}
+.btn-disabled{opacity:.5;cursor:not-allowed}
 
 /* Calendar Embed */
-.calendar-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px;display:none}
-.calendar-section.active{display:block}
-.calendar-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
-.calendar-header h2{font-size:1.5rem}
-.close-btn{background:none;border:none;color:var(--text3);font-size:1.5rem;cursor:pointer}
-.close-btn:hover{color:var(--text)}
-.embed-container{height:600px;border-radius:8px;overflow:hidden;background:var(--surface2)}
+.calendar-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:44px;margin-bottom:80px;display:none}
+.calendar-section.active{display:block;animation:slideIn .4s ease-out}
+@keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.calendar-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.calendar-header h2{font-size:1.75rem}
+.close-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);font-size:1.5rem;width:40px;height:40px;border-radius:8px;cursor:pointer;transition:all .2s}
+.close-btn:hover{border-color:var(--green);color:var(--green)}
+.embed-container{height:640px;border-radius:12px;overflow:hidden;background:var(--surface2);border:1px solid var(--border)}
 .embed-container iframe{width:100%;height:100%;border:none}
 
+/* Payment Flow */
+.payment-prompt{padding:48px;text-align:center}
+.payment-prompt h3{font-size:1.5rem;margin-bottom:16px}
+.payment-prompt p{color:var(--text2);margin-bottom:32px}
+.payment-steps{display:grid;gap:20px;max-width:500px;margin:0 auto 32px}
+.payment-step{background:var(--surface2);padding:20px;border-radius:10px;text-align:left}
+.payment-step strong{color:var(--green);display:block;margin-bottom:8px}
+
+/* Social Proof */
+.testimonials{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:48px;margin-bottom:80px}
+.testimonials h2{text-align:center;margin-bottom:40px;font-size:2rem}
+.testimonial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.testimonial{background:var(--surface2);padding:24px;border-radius:12px;border:1px solid var(--border)}
+.testimonial-text{color:var(--text2);font-style:italic;margin-bottom:16px;line-height:1.7}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.author-avatar{width:40px;height:40px;border-radius:50%;background:var(--green-dim);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--green)}
+.author-name{font-weight:600;font-size:.95rem}
+.author-role{color:var(--text3);font-size:.85rem}
+
+/* FAQ */
+.faq{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:48px;margin-bottom:80px}
+.faq h2{text-align:center;margin-bottom:40px;font-size:2rem}
+.faq-item{padding:24px;border-bottom:1px solid var(--border)}
+.faq-item:last-child{border-bottom:none}
+.faq-question{font-weight:600;font-size:1.1rem;margin-bottom:12px;color:var(--text)}
+.faq-answer{color:var(--text2);line-height:1.7}
+
 /* Footer */
-footer{padding:40px 24px;border-top:1px solid var(--border);text-align:center;color:var(--text3);font-size:.875rem}
+footer{padding:48px 24px;border-top:1px solid var(--border);text-align:center;color:var(--text3);font-size:.9rem}
 footer a{color:var(--text2)}
 footer a:hover{color:var(--green)}
 
 /* Responsive */
 @media(max-width:768px){
   .booking-grid{grid-template-columns:1fr}
-  .calendar-section{padding:24px}
-  .embed-container{height:500px}
+  .testimonial-grid{grid-template-columns:1fr}
+  .calendar-section{padding:28px}
+  .embed-container{height:520px}
+  .hero h1{font-size:2.5rem}
+  .price{font-size:2.5rem}
 }
 </style>
 </head>
@@ -92,36 +131,56 @@ footer a:hover{color:var(--green)}
 
 <main>
   <section class="hero">
-    <h1>Book a Call</h1>
-    <p>Let's talk product, AI agents, or how I can help your business.</p>
+    <h1>Book a Call with JD</h1>
+    <p>Product strategy, AI agent development, or business consulting — let's talk.</p>
+    <div class="hero-pills">
+      <span class="pill"><span class="pill-icon">🚀</span> Product Strategy</span>
+      <span class="pill"><span class="pill-icon">🤖</span> AI Agents</span>
+      <span class="pill"><span class="pill-icon">💼</span> Business Consulting</span>
+    </div>
   </section>
 
   <div class="booking-grid">
     <!-- Free Call -->
     <div class="booking-card">
-      <div class="duration">⏱ 15 MINUTES</div>
+      <div class="duration">⏱ 15 MIN</div>
       <h3>Quick Chat</h3>
       <p class="description">Introductory call to discuss your needs and see if we're a good fit.</p>
+      <ul class="features">
+        <li>No commitment</li>
+        <li>Ask any questions</li>
+        <li>Get quick advice</li>
+      </ul>
       <div class="price">Free</div>
       <button class="btn btn-outline" onclick="showCalendar('free')">Book Free Call →</button>
     </div>
 
     <!-- Paid Call -->
     <div class="booking-card featured">
-      <span class="badge">POPULAR</span>
-      <div class="duration">⏱ 30 MINUTES</div>
+      <span class="badge">Popular</span>
+      <div class="duration">⏱ 30 MIN</div>
       <h3>Strategy Session</h3>
-      <p class="description">Deep dive into your product, AI strategy, or business challenge.</p>
-      <div class="price">$75<span> / call</span></div>
+      <p class="description">Deep dive into your product, AI strategy, or business challenge with actionable insights.</p>
+      <ul class="features">
+        <li>Focused problem-solving</li>
+        <li>Actionable roadmap</li>
+        <li>Follow-up notes</li>
+      </ul>
+      <div class="price">$75<span>/call</span></div>
       <button class="btn btn-primary" onclick="showCalendar('strategy')">Book Strategy Session →</button>
     </div>
 
     <!-- Premium Call -->
     <div class="booking-card">
-      <div class="duration">⏱ 60 MINUTES</div>
+      <div class="duration">⏱ 60 MIN</div>
       <h3>Deep Dive</h3>
-      <p class="description">Comprehensive consulting session. Roadmap, architecture, or hands-on help.</p>
-      <div class="price">$150<span> / call</span></div>
+      <p class="description">Comprehensive consulting. Architecture review, roadmap planning, or hands-on technical guidance.</p>
+      <ul class="features">
+        <li>Full strategic analysis</li>
+        <li>Technical deep dive</li>
+        <li>Detailed deliverables</li>
+      </ul>
+      <div class="price">$150<span>/call</span></div>
       <button class="btn btn-outline" onclick="showCalendar('deep')">Book Deep Dive →</button>
     </div>
   </div>
@@ -129,7 +188,7 @@ footer a:hover{color:var(--green)}
   <!-- Calendar Embed -->
   <div id="calendar-free" class="calendar-section">
     <div class="calendar-header">
-      <h2>Book Your Free 15-Minute Call</h2>
+      <h2>📅 Book Your Free 15-Minute Call</h2>
       <button class="close-btn" onclick="hideCalendar()">×</button>
     </div>
     <div class="embed-container">
@@ -139,29 +198,111 @@ footer a:hover{color:var(--green)}
 
   <div id="calendar-strategy" class="calendar-section">
     <div class="calendar-header">
-      <h2>Book 30-Minute Strategy Session</h2>
+      <h2>💳 30-Minute Strategy Session ($75)</h2>
       <button class="close-btn" onclick="hideCalendar()">×</button>
     </div>
-    <div class="embed-container">
-      <div style="padding:40px;text-align:center;color:var(--text2)">
-        <p>Email me to schedule:</p>
-        <p style="margin-top:16px"><a href="mailto:me@jddavenport.com?subject=Strategy Session Booking ($75)" class="btn btn-primary" style="display:inline-flex;width:auto;padding:12px 32px">Email me@jddavenport.com →</a></p>
+    <div class="payment-prompt">
+      <h3>How it works:</h3>
+      <div class="payment-steps">
+        <div class="payment-step">
+          <strong>1. Email me</strong>
+          <div>Send a quick email with your availability and what you'd like to discuss.</div>
+        </div>
+        <div class="payment-step">
+          <strong>2. I'll send a Stripe link</strong>
+          <div>Secure payment link for the $75 session fee.</div>
+        </div>
+        <div class="payment-step">
+          <strong>3. Schedule the call</strong>
+          <div>Once payment is confirmed, we'll lock in a time that works for both of us.</div>
+        </div>
       </div>
+      <a href="mailto:me@jddavenport.com?subject=Strategy Session Booking ($75)&body=Hi JD,%0D%0A%0D%0AI'd like to book a 30-minute strategy session.%0D%0A%0D%0ATopic:%0D%0A[Describe what you'd like to discuss]%0D%0A%0D%0AAvailability:%0D%0A[Share 2-3 time slots that work for you]%0D%0A%0D%0AThanks!" class="btn btn-primary">Email me@jddavenport.com →</a>
     </div>
   </div>
 
   <div id="calendar-deep" class="calendar-section">
     <div class="calendar-header">
-      <h2>Book 60-Minute Deep Dive</h2>
+      <h2>💳 60-Minute Deep Dive ($150)</h2>
       <button class="close-btn" onclick="hideCalendar()">×</button>
     </div>
-    <div class="embed-container">
-      <div style="padding:40px;text-align:center;color:var(--text2)">
-        <p>Email me to schedule:</p>
-        <p style="margin-top:16px"><a href="mailto:me@jddavenport.com?subject=Deep Dive Booking ($150)" class="btn btn-primary" style="display:inline-flex;width:auto;padding:12px 32px">Email me@jddavenport.com →</a></p>
+    <div class="payment-prompt">
+      <h3>How it works:</h3>
+      <div class="payment-steps">
+        <div class="payment-step">
+          <strong>1. Email me</strong>
+          <div>Send a detailed description of your project and what you need help with.</div>
+        </div>
+        <div class="payment-step">
+          <strong>2. I'll send a Stripe link</strong>
+          <div>Secure payment link for the $150 session fee.</div>
+        </div>
+        <div class="payment-step">
+          <strong>3. Schedule the call</strong>
+          <div>Once payment is confirmed, we'll schedule your deep dive session.</div>
+        </div>
       </div>
+      <a href="mailto:me@jddavenport.com?subject=Deep Dive Booking ($150)&body=Hi JD,%0D%0A%0D%0AI'd like to book a 60-minute deep dive session.%0D%0A%0D%0AProject Overview:%0D%0A[Describe your project/challenge]%0D%0A%0D%0AWhat I need help with:%0D%0A[Specific areas where you need guidance]%0D%0A%0D%0AAvailability:%0D%0A[Share 2-3 time slots that work for you]%0D%0A%0D%0AThanks!" class="btn btn-primary">Email me@jddavenport.com →</a>
     </div>
   </div>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <h2>What People Say</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial">
+        <div class="testimonial-text">"JD's deep understanding of AI agents and product strategy helped us avoid months of wrong turns. Worth every penny."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">SK</div>
+          <div>
+            <div class="author-name">Sarah K.</div>
+            <div class="author-role">Founder, AI Startup</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-text">"Clear, actionable advice. JD cut through the noise and gave us a roadmap we could actually execute on."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">MT</div>
+          <div>
+            <div class="author-name">Mike T.</div>
+            <div class="author-role">CTO, SaaS Company</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-text">"Best consulting call I've had. JD asked the right questions and gave honest, practical feedback."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">JL</div>
+          <div>
+            <div class="author-name">Jessica L.</div>
+            <div class="author-role">Product Manager</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question">What can we discuss in a call?</div>
+      <div class="faq-answer">Product strategy, AI agent development, business consulting, technical architecture, go-to-market planning — anything related to building and growing products.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Do you offer refunds?</div>
+      <div class="faq-answer">Yes. If you're not satisfied with the call, I'll refund you 100%. No questions asked.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Can I book multiple sessions?</div>
+      <div class="faq-answer">Absolutely. Many clients start with a strategy session and then book follow-ups as needed. I also offer retainer arrangements for ongoing work.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What happens after payment?</div>
+      <div class="faq-answer">I'll send you a calendar invite with a Zoom link, a questionnaire to prep for the call, and follow-up with detailed notes and action items after we meet.</div>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -170,19 +311,23 @@ footer a:hover{color:var(--green)}
 
 <script>
 function showCalendar(type) {
-  // Hide all calendars
   document.querySelectorAll('.calendar-section').forEach(el => el.classList.remove('active'));
-  // Show selected
   const calendar = document.getElementById('calendar-' + type);
   if (calendar) {
     calendar.classList.add('active');
-    calendar.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => calendar.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
   }
 }
 
 function hideCalendar() {
   document.querySelectorAll('.calendar-section').forEach(el => el.classList.remove('active'));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// Close on escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') hideCalendar();
+});
 </script>
 </body>
 </html>
